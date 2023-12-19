@@ -334,10 +334,13 @@ export function Pool() {
         className="bg-cover flex items-center justify-center"
         style={{ backgroundImage: `url(${footerImage})`, height: 320 }}
       >
-        <button className="p-3 bg-blue-500 rounded-lg text-gray-100 font-semibold text-lg flex">
+        <a
+          href="/match"
+          className="p-3 bg-blue-500 rounded-lg text-gray-100 font-semibold text-lg flex"
+        >
           <ClickIcon />
           <span className="ml-4">Générer le tirage au sort</span>
-        </button>
+        </a>
       </div>
     </div>
   );
