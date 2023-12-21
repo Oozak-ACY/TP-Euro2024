@@ -9,10 +9,10 @@ app.use(cors());
 
 // Configurer la connexion à la base de données
 const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'eurofoot2024'
+    host: process.env.HOST,
+    user: process.env.USER,
+    password: process.env.PASSWORD,
+    database: process.env.DATABASE
 });
 
 // API pour récupérer des données
