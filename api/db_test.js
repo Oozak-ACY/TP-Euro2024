@@ -1,6 +1,7 @@
 const express = require('express');
 const mysql = require('mysql');
 const cors = require('cors');
+require('dotenv').config();
 
 const app = express();
 app.use(express.json());
@@ -9,10 +10,10 @@ app.use(cors());
 
 // Configurer la connexion à la base de données
 const db = mysql.createConnection({
-    host: "127.0.0.1",
-    user: "root",
-    password: "",
-    database: "eurofoot2024",
+    host: process.env.HOST,
+    user: process.env.USER,
+    password: process.env.PASSWORD,
+    database: process.env.DATABASE,
     multipleStatements: true
 });
 
@@ -54,7 +55,6 @@ app.post('/api/tirage', (req, res) => {
         return res.status(400).json({ message: 'Requete manquante' });
     }
     const data = req.body["query"];
-    console.log(data);
     try{
         let query = "TRUNCATE TABLE matchs;"
         data.forEach(element => {
@@ -66,7 +66,6 @@ app.post('/api/tirage', (req, res) => {
 
         db.query('SELECT m.code_equipe1, m.code_equipe2, e1.name as nom_equipe1, e2.name as nom_equipe2, m.groupe  FROM matchs m LEFT JOIN equipes e1 on e1.code = m.code_equipe1 LEFT JOIN equipes e2 on e2.code = m.code_equipe2', (err, results) => {
             if (err) throw err;
-            console.log("Requete passée :", results);
             res.json(results);
         });
     }catch (erreur){
