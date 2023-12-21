@@ -16,6 +16,30 @@ const db = mysql.createConnection({
     multipleStatements: true
 });
 
+//Api pour récupérer les équipes
+app.get('/api/hat1', (req, res) => {
+    db.query('SELECT * FROM equipes WHERE hat = 1 AND playoff IS NULL', (err, results) => {
+        if (err) throw err;
+        res.json(results);
+    });
+});
+
+app.get('/api/hat2', (req, res) => {
+    db.query('SELECT * FROM equipes WHERE hat = 2 ', (err, results) => {
+        if (err) throw err;
+        
+        res.json(results);
+    });
+});
+
+app.get('/api/hat3', (req, res) => {
+    db.query('SELECT * FROM equipes WHERE hat = 3', (err, results) => {
+        if (err) throw err;
+        
+        res.json(results);
+    });
+});
+
 // API pour récupérer des données
 app.get('/api/equipes', (req, res) => {
     db.query('SELECT * FROM equipes', (err, results) => {
