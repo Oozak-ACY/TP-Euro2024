@@ -16,5 +16,10 @@ v0.0.1
 2. Allez dans le répertoire eurofoot2024 : ```cd eurofoot2024```
 3. Installer les dépendances : ```npm i```
 4. Créer le fichier ```.env``` à la racine du projet
-5. Ajouter les lignes suivantes dans le fichier ```.env``` :
-6. Lancer le projet : ```npm start```
+5. Installer la dépendance env ```npm install dotenv --save```
+6. Ajouter les lignes suivantes dans le fichier ```.env``` :
+```HOST = ```
+```USER = ```
+```PASSWORD = ```
+```DATABASE = ```
+7. Lancer le projet : ```npm start```

@@ -106,7 +106,6 @@ export function Match() {
                 });
             }
         });
-        console.log(matchs, "matchs juste avant l'appel api");
         setQuery(query);
     }, [data]); 
     
@@ -129,7 +128,7 @@ export function Match() {
         .then(datatirage => {
             setTimeout(() =>{
                 setDataTirage(datatirage);
-            }, 1500);
+            }, 100);
             
         });
     }, [query]); 
