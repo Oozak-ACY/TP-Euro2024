@@ -61,7 +61,7 @@ app.get("/api/matchresults", (req, res) => {
   });
 });
 
-app.get("/api/groupstandings", (req, res) => {
+app.get("/api/groupstandings", (res) => {
   db.query(
     `
     SELECT team, phase, SUM(points) AS totalPoints
