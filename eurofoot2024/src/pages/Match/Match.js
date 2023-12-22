@@ -24,7 +24,6 @@ export function Match() {
             .then(response => response.json())
             .then(data => setData(data));
     }, []);
-
     useEffect(() => {
         // On crée dictionnaire avec pour clé le nom de l'équipe et pour valeur le numéro du chapeau
         const equipes_dictionnary = {};
@@ -189,10 +188,14 @@ export function Match() {
                 
             </div>
             <div className="bg-cover flex items-center justify-center" style={{ backgroundImage: `url(${footerImage})` , height: 328}}>
-                <button className="p-3 bg-blue-500 rounded-lg text-gray-100 font-semibold text-lg flex">
-                    <ClickIcon/>
-                <span className="ml-4">Générer le tirage au sort</span>
-                </button>
+                <a
+                    href="/classement"
+                    className="p-3 bg-blue-500 rounded-lg text-gray-100 font-semibold text-lg flex"
+                    >
+                    <ClickIcon />
+                    
+                    <span className="ml-4">Voir le classement des équipes par groupe</span>
+                </a>
             </div>
         </div>
     )

@@ -61,23 +61,24 @@ app.get("/api/matchresults", (req, res) => {
   });
 });
 
-app.get("/api/groupstandings", (res) => {
+app.get("/api/groupstandings", (req,res) => {
+  
   db.query(
     `
     SELECT team, phase, SUM(points) AS totalPoints
     FROM (
-      SELECT team1 AS team, team1Goals AS goals, phase,
+      SELECT code_equipe1 AS team, score_equipe1 AS goals, phase,
              CASE 
-               WHEN team1Goals > team2Goals THEN 3
-               WHEN team1Goals = team2Goals THEN 1
+               WHEN score_equipe1 > score_equipe2 THEN 3
+               WHEN score_equipe1 = score_equipe2 THEN 1
                ELSE 0
              END AS points
       FROM matchresults
       UNION ALL
-      SELECT team2 AS team, team2Goals AS goals, phase,
+      SELECT code_equipe2 AS team, score_equipe2 AS goals, phase,
              CASE 
-               WHEN team2Goals > team1Goals THEN 3
-               WHEN team2Goals = team1Goals THEN 1
+               WHEN score_equipe2 > score_equipe1 THEN 3
+               WHEN score_equipe2 = score_equipe1 THEN 1
                ELSE 0
              END AS points
       FROM matchresults
@@ -87,8 +88,9 @@ app.get("/api/groupstandings", (res) => {
     ORDER BY phase, totalPoints DESC, team;
   `,
     (err, results) => {
-      if (err) throw err;
-      res.json(results);
+        
+        if (err) throw err;
+        res.json(results);
     }
   );
 });
